@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Librarian</string>
+    <string name="home">Главная страница</string>
+    <string name="search">Поиск</string>
+    <string name="library">Библиотека</string>
+    <string name="heart">Избранные</string>
+    <string name="user">Мой аккаунт</string>
+</resources>
