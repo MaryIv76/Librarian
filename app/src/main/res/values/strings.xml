@@ -5,4 +5,16 @@
     <string name="library">Библиотека</string>
     <string name="heart">Избранные</string>
     <string name="user">Мой аккаунт</string>
+
+    <string-array name="spinner_array">
+        <item>По популярности</item>
+        <item>По рейтингу</item>
+        <item>Новинки</item>
+    </string-array>
+
+    <string name="author">Автор:</string>
+    <string name="book_name">Название:</string>
+    <string name="year">Год:</string>
+    <string name="genre">Жанр:</string>
+    <string name="annotation">Аннотация:</string>
 </resources>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:id="@+id/oneLineLibraryBookLayout">
+
+
+    <ImageView
+        android:id="@+id/bookImage"
+        android:layout_width="115dp"
+        android:layout_height="160dp"
+        android:layout_alignParentStart="true"
+        android:layout_weight="1"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:id="@+id/bookInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/bookImage"
+        android:layout_weight="1.5"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/authorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/author"
+                style="@style/textFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/author" />
+
+            <TextView
+                android:id="@+id/authorInfo"
+                style="@style/textFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/author" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bookNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/bookName"
+                style="@style/textFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/book_name" />
+
+            <TextView
+                android:id="@+id/bookNameInfo"
+                style="@style/textFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/bookName" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/yearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/year"
+                style="@style/textFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/year" />
+
+            <TextView
+                android:id="@+id/yearInfo"
+                style="@style/textFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/year" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/genreLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/genre"
+                style="@style/textFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/genre" />
+
+            <TextView
+                android:id="@+id/genreInfo"
+                style="@style/textFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/genre" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annotationLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/annotation"
+                style="@style/textFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@string/annotation" />
+
+            <TextView
+                android:id="@+id/annotationInfo"
+                style="@style/textFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/annotation" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
