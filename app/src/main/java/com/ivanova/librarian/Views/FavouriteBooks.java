@@ -3,7 +3,6 @@ package com.ivanova.librarian.Views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -20,13 +19,10 @@ import com.ivanova.librarian.ViewModels.RecycleViewAdapter;
 import com.ivanova.librarian.ViewModels.RecyclerViewInterface;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
-public class Library extends AppCompatActivity implements RecyclerViewInterface {
+public class FavouriteBooks extends AppCompatActivity implements RecyclerViewInterface {
 
     private BottomNavigationView menu;
-    private Spinner spinner;
 
     private ArrayList<BookModel> books;
 
@@ -37,24 +33,17 @@ public class Library extends AppCompatActivity implements RecyclerViewInterface 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.library);
-
-        // ---------------------- Spinner -----------------------------
-        spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_array, R.layout.spinner_item);
-        spinnerAdapter.setDropDownViewResource(R.layout.spinner_drop_item);
-        spinner.setAdapter(spinnerAdapter);
+        setContentView(R.layout.favourite_books);
 
         // ---------------------- Menu -----------------------------
         menu = findViewById(R.id.bottomNavigation);
-        menu.getMenu().getItem(2).setChecked(true);
+        menu.getMenu().getItem(3).setChecked(true);
         menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.homeItem: {
-                        Intent intent = new Intent(Library.this, HomePage.class);
+                        Intent intent = new Intent(FavouriteBooks.this, HomePage.class);
                         startActivity(intent);
                         return true;
                     }
@@ -62,11 +51,11 @@ public class Library extends AppCompatActivity implements RecyclerViewInterface 
                         return true;
                     }
                     case R.id.bookItem: {
+                        Intent intent = new Intent(FavouriteBooks.this, Library.class);
+                        startActivity(intent);
                         return true;
                     }
                     case R.id.heartItem: {
-                        Intent intent = new Intent(Library.this, FavouriteBooks.class);
-                        startActivity(intent);
                         return true;
                     }
                     case R.id.userItem: {
@@ -78,10 +67,7 @@ public class Library extends AppCompatActivity implements RecyclerViewInterface 
         });
 
         // ---------------------- Books List View -----------------------------
-        books = BooksInfo.getRecommendedBooks();
-        books.addAll(BooksInfo.getBestBooks());
-        books.addAll(BooksInfo.getPopularBooks());
-        books.addAll(BooksInfo.getNewBooks());
+        books = BooksInfo.getNewBooks();
 
         recyclerView = findViewById(R.id.booksRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -89,14 +75,13 @@ public class Library extends AppCompatActivity implements RecyclerViewInterface 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerViewAdapter = new RecycleViewAdapter(books, this, Library.this);
+        recyclerViewAdapter = new RecycleViewAdapter(books, this, FavouriteBooks.this);
         recyclerView.setAdapter(recyclerViewAdapter);
-
     }
 
     @Override
     public void onBookItemClick(int position) {
-        Intent intent = new Intent(Library.this, Book.class);
+        Intent intent = new Intent(FavouriteBooks.this, Book.class);
 
         intent.putExtra("AUTHOR", books.get(position).getAuthor());
         intent.putExtra("BOOK_NAME", books.get(position).getBookName());

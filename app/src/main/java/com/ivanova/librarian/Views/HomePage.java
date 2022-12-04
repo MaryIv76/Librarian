@@ -64,6 +64,8 @@ public class HomePage extends AppCompatActivity implements HomePageRecyclerViewI
                         return true;
                     }
                     case R.id.heartItem: {
+                        Intent intent = new Intent(HomePage.this, FavouriteBooks.class);
+                        startActivity(intent);
                         return true;
                     }
                     case R.id.userItem: {

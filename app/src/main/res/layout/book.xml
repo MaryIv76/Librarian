@@ -1,196 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/bookImage"
-            android:layout_width="200dp"
-            android:layout_height="280dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:scaleType="centerCrop" />
-
+        android:layout_height="wrap_content"
+        android:layout_above="@id/menuLayout"
+        android:layout_alignParentTop="true">
 
         <RelativeLayout
-            android:id="@+id/nameAuthorStars"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/bookImage"
-            android:layout_marginTop="10dp">
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/bookImage"
+                android:layout_width="200dp"
+                android:layout_height="280dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:scaleType="centerCrop" />
 
 
             <RelativeLayout
-                android:id="@+id/nameAuthor"
+                android:id="@+id/nameAuthorStars"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="50dp">
+                android:layout_below="@id/bookImage"
+                android:layout_marginTop="10dp">
 
 
-                <TextView
-                    android:id="@+id/tv_bookName"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/nameAuthor"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/sans_caption_bold"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:layout_marginHorizontal="50dp">
 
-                <TextView
-                    android:id="@+id/tv_author"
+
+                    <TextView
+                        android:id="@+id/tv_bookName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/sans_caption_bold"
+                        android:text="TextView"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_bookName"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/sans_caption_bold"
+                        android:text="TextView"
+                        android:textAlignment="center"
+                        android:textColor="@color/black_60"
+                        android:textSize="16dp" />
+                </RelativeLayout>
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_bookName"
+                    android:layout_below="@id/nameAuthor"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/sans_caption_bold"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textColor="@color/black_60"
-                    android:textSize="16dp" />
+                    android:layout_marginTop="15dp"
+                    android:numStars="5"
+                    android:progressBackgroundTint="@color/blue"
+                    android:progressTint="@color/yellow"
+                    android:secondaryProgressTint="@color/yellow" />
             </RelativeLayout>
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
+
+            <RelativeLayout
+                android:id="@+id/buttons"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/nameAuthor"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
-                android:numStars="5"
-                android:progressBackgroundTint="@color/blue"
-                android:progressTint="@color/yellow"
-                android:secondaryProgressTint="@color/yellow" />
+                android:layout_below="@id/nameAuthorStars"
+                android:layout_marginTop="15dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <include
+                        android:id="@+id/read_button"
+                        layout="@layout/my_read_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <include
+                        android:id="@+id/favourite_button"
+                        layout="@layout/my_favourite_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/read_button" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bookInfoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buttons"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="25dp">
+
+                <RelativeLayout
+                    android:id="@+id/yearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_year"
+                        style="@style/boldTextFontBig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/year" />
+
+                    <TextView
+                        android:id="@+id/tv_yearInfo"
+                        style="@style/regularTextFontBig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/tv_year" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/genreLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/yearLayout">
+
+                    <TextView
+                        android:id="@+id/tv_genre"
+                        style="@style/boldTextFontBig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/genre" />
+
+                    <TextView
+                        android:id="@+id/tv_genreInfo"
+                        style="@style/regularTextFontBig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/tv_genre" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/annotationLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/genreLayout"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_annotation"
+                        style="@style/boldTextFontBig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/annotation" />
+
+                    <TextView
+                        android:id="@+id/tv_annotationInfo"
+                        style="@style/regularTextFontBig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_annotation"
+                        android:layout_alignParentStart="true"
+                        android:layout_toRightOf="@id/tv_annotation" />
+                </RelativeLayout>
+
+            </RelativeLayout>
         </RelativeLayout>
+    </ScrollView>
 
+    <FrameLayout
+        android:id="@+id/menuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
 
-        <RelativeLayout
-            android:id="@+id/buttons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/nameAuthorStars"
-            android:layout_marginTop="15dp">
+        <include layout="@layout/my_menu" />
+    </FrameLayout>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-
-                <include
-                    android:id="@+id/read_button"
-                    layout="@layout/my_read_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <include
-                    android:id="@+id/favourite_button"
-                    layout="@layout/my_favourite_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@id/read_button" />
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/bookInfoLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/buttons"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="25dp">
-
-            <RelativeLayout
-                android:id="@+id/yearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_year"
-                    style="@style/boldTextFontBig"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="@string/year" />
-
-                <TextView
-                    android:id="@+id/tv_yearInfo"
-                    style="@style/regularTextFontBig"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/tv_year" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/genreLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/yearLayout">
-
-                <TextView
-                    android:id="@+id/tv_genre"
-                    style="@style/boldTextFontBig"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="@string/genre" />
-
-                <TextView
-                    android:id="@+id/tv_genreInfo"
-                    style="@style/regularTextFontBig"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/tv_genre" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/annotationLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/genreLayout"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:id="@+id/tv_annotation"
-                    style="@style/boldTextFontBig"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="@string/annotation" />
-
-                <TextView
-                    android:id="@+id/tv_annotationInfo"
-                    style="@style/regularTextFontBig"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_annotation"
-                    android:layout_alignParentStart="true"
-                    android:layout_toRightOf="@id/tv_annotation" />
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <FrameLayout
-            android:id="@+id/menuLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-
-            <include layout="@layout/my_menu" />
-        </FrameLayout>
-
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>
