@@ -1,12 +1,9 @@
-package com.ivanova.librarian;
+package com.ivanova.librarian.Views;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -14,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.ivanova.librarian.R;
 
 public class HomePage extends AppCompatActivity {
 

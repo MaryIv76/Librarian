@@ -1,7 +1,6 @@
 package com.ivanova.librarian.ViewModels;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,26 +10,29 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ivanova.librarian.Models.Book;
+import com.ivanova.librarian.Models.BookModel;
 import com.ivanova.librarian.R;
 
 import java.util.ArrayList;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
 
-    ArrayList<Book> books;
+    private final RecyclerViewInterface recyclerViewInterface;
+
+    ArrayList<BookModel> books;
     Context context;
 
-    public RecycleViewAdapter(ArrayList<Book> books, Context context) {
+    public RecycleViewAdapter(ArrayList<BookModel> books, Context context, RecyclerViewInterface recyclerViewInterface) {
         this.books = books;
         this.context = context;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.library_book_item, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
+        MyViewHolder holder = new MyViewHolder(view, recyclerViewInterface);
         return holder;
     }
 
@@ -49,7 +51,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         return books.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_bookImg;
         TextView tv_bookAuthor;
         TextView tv_bookName;
@@ -57,7 +59,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         TextView tv_bookGenre;
         TextView tv_bookAnnotation;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             iv_bookImg = itemView.findViewById(R.id.bookImage);
             tv_bookAuthor = itemView.findViewById(R.id.authorInfo);
@@ -65,6 +67,19 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             tv_bookYear = itemView.findViewById(R.id.yearInfo);
             tv_bookGenre = itemView.findViewById(R.id.genreInfo);
             tv_bookAnnotation = itemView.findViewById(R.id.annotationInfo);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (recyclerViewInterface != null) {
+                        int pos = getAbsoluteAdapterPosition();
+
+                        if (pos != RecyclerView.NO_POSITION) {
+                            recyclerViewInterface.onBookItemClick(pos);
+                        }
+                    }
+                }
+            });
         }
     }
 }

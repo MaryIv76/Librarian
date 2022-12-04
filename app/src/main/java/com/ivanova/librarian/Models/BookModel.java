@@ -1,8 +1,6 @@
 package com.ivanova.librarian.Models;
 
-import android.net.Uri;
-
-public class Book {
+public class BookModel {
 
     private String author;
     private String bookName;
@@ -10,14 +8,16 @@ public class Book {
     private String genre;
     private String annotation;
     private int image;
+    private double rating;
 
-    public Book(String author, String bookName, String year, String genre, String annotation, int image) {
+    public BookModel(String author, String bookName, String year, String genre, String annotation, int image, double rating) {
         this.author = author;
         this.bookName = bookName;
         this.year = year;
         this.genre = genre;
         this.annotation = annotation;
         this.image = image;
+        this.rating = rating;
     }
 
     public String getAuthor() {
@@ -66,5 +66,13 @@ public class Book {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }

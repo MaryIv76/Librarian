@@ -1,4 +1,4 @@
-package com.ivanova.librarian;
+package com.ivanova.librarian.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,19 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.ivanova.librarian.Models.Book;
-import com.ivanova.librarian.Models.Books_info;
+import com.ivanova.librarian.Models.BookModel;
+import com.ivanova.librarian.Models.BooksInfo;
+import com.ivanova.librarian.R;
 import com.ivanova.librarian.ViewModels.RecycleViewAdapter;
+import com.ivanova.librarian.ViewModels.RecyclerViewInterface;
 
 import java.util.ArrayList;
 
-public class Library extends AppCompatActivity {
+public class Library extends AppCompatActivity implements RecyclerViewInterface {
 
     private BottomNavigationView menu;
     private Spinner spinner;
-    //private ListView booksListView;
 
-    private ArrayList<Book> books;
+    private ArrayList<BookModel> books;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerViewAdapter;
@@ -73,8 +74,7 @@ public class Library extends AppCompatActivity {
         });
 
         // ---------------------- Books List View -----------------------------
-        books = Books_info.getBooks();
-        //booksListView = findViewById(R.id.booksListView);
+        books = BooksInfo.getBooks();
 
         recyclerView = findViewById(R.id.booksRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -82,11 +82,23 @@ public class Library extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerViewAdapter = new RecycleViewAdapter(books, this);
+        recyclerViewAdapter = new RecycleViewAdapter(books, this, Library.this);
         recyclerView.setAdapter(recyclerViewAdapter);
 
-        /*String[] arr = new String[]{"aaaaa", "bbbbb", "c","asd","ytre","adjkg"};
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<>(this, R.layout.library_book_item, R.id.authorInfo, arr);
-        booksListView.setAdapter(listViewAdapter);*/
+    }
+
+    @Override
+    public void onBookItemClick(int position) {
+        Intent intent = new Intent(Library.this, Book.class);
+
+        intent.putExtra("AUTHOR", books.get(position).getAuthor());
+        intent.putExtra("BOOK_NAME", books.get(position).getBookName());
+        intent.putExtra("YEAR", books.get(position).getYear());
+        intent.putExtra("GENRE", books.get(position).getGenre());
+        intent.putExtra("ANNOTATION", books.get(position).getAnnotation());
+        intent.putExtra("IMAGE", String.valueOf(books.get(position).getImage()));
+        intent.putExtra("RATING", String.valueOf(books.get(position).getRating()));
+
+        startActivity(intent);
     }
 }

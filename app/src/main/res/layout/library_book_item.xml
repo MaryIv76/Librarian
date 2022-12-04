@@ -32,7 +32,7 @@
 
             <TextView
                 android:id="@+id/author"
-                style="@style/textFont"
+                style="@style/boldTextFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -40,7 +40,7 @@
 
             <TextView
                 android:id="@+id/authorInfo"
-                style="@style/textFont"
+                style="@style/regularTextFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -54,7 +54,7 @@
 
             <TextView
                 android:id="@+id/bookName"
-                style="@style/textFont"
+                style="@style/boldTextFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -62,7 +62,7 @@
 
             <TextView
                 android:id="@+id/bookNameInfo"
-                style="@style/textFont"
+                style="@style/regularTextFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -76,7 +76,7 @@
 
             <TextView
                 android:id="@+id/year"
-                style="@style/textFont"
+                style="@style/boldTextFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -84,7 +84,7 @@
 
             <TextView
                 android:id="@+id/yearInfo"
-                style="@style/textFont"
+                style="@style/regularTextFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -98,7 +98,7 @@
 
             <TextView
                 android:id="@+id/genre"
-                style="@style/textFont"
+                style="@style/boldTextFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -106,7 +106,7 @@
 
             <TextView
                 android:id="@+id/genreInfo"
-                style="@style/textFont"
+                style="@style/regularTextFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -120,7 +120,7 @@
 
             <TextView
                 android:id="@+id/annotation"
-                style="@style/textFont"
+                style="@style/boldTextFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -128,7 +128,7 @@
 
             <TextView
                 android:id="@+id/annotationInfo"
-                style="@style/textFont"
+                style="@style/regularTextFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/annotation" />

@@ -17,19 +17,42 @@
     <!-- Spinner -->
     <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
         <item name="android:textSize">14dp</item>
+        <item name="fontFamily">@font/sans_caption_regular</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:gravity">right</item>
     </style>
 
     <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
         <item name="android:textSize">14dp</item>
+        <item name="fontFamily">@font/sans_caption_regular</item>
         <item name="android:gravity">left</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:padding">10dp</item>
     </style>
 
     <!-- Fonts -->
-    <style name="textFont">
+    <style name="regularTextFont">
         <item name="fontFamily">@font/sans_caption_regular</item>
         <item name="android:textSize">12dp</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="boldTextFont">
+        <item name="fontFamily">@font/sans_caption_bold</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="regularTextFontBig">
+        <item name="fontFamily">@font/sans_caption_regular</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="boldTextFontBig">
+        <item name="fontFamily">@font/sans_caption_bold</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>
