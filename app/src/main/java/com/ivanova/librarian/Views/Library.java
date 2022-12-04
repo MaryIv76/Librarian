@@ -20,6 +20,8 @@ import com.ivanova.librarian.ViewModels.RecycleViewAdapter;
 import com.ivanova.librarian.ViewModels.RecyclerViewInterface;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Library extends AppCompatActivity implements RecyclerViewInterface {
 
@@ -74,7 +76,10 @@ public class Library extends AppCompatActivity implements RecyclerViewInterface 
         });
 
         // ---------------------- Books List View -----------------------------
-        books = BooksInfo.getBooks();
+        books = BooksInfo.getRecommendedBooks();
+        books.addAll(BooksInfo.getBestBooks());
+        books.addAll(BooksInfo.getPopularBooks());
+        books.addAll(BooksInfo.getNewBooks());
 
         recyclerView = findViewById(R.id.booksRecyclerView);
         recyclerView.setHasFixedSize(true);

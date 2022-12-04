@@ -20,4 +20,9 @@
 
     <string name="read">Прочитано</string>
     <string name="favourite">Избранные</string>
+
+    <string name="recommend">Рекомендуем</string>
+    <string name="best_books">Лучшие книги</string>
+    <string name="popular_books">Популярные книги</string>
+    <string name="new_books">Новинки</string>
 </resources>

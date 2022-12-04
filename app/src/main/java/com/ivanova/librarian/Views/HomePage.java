@@ -8,12 +8,20 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.ivanova.librarian.Models.BookModel;
+import com.ivanova.librarian.Models.BooksInfo;
 import com.ivanova.librarian.R;
+import com.ivanova.librarian.ViewModels.HomePageRecycleViewAdapter;
+import com.ivanova.librarian.ViewModels.HomePageRecyclerViewInterface;
 
-public class HomePage extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class HomePage extends AppCompatActivity implements HomePageRecyclerViewInterface {
 
     private BottomNavigationView menu;
     private Spinner spinner;
@@ -29,6 +37,13 @@ public class HomePage extends AppCompatActivity {
                 R.array.spinner_array, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_drop_item);
         spinner.setAdapter(adapter);
+
+
+        // ---------------------- Books Horizontal List -----------------------------
+        createHorizontalRecyclerView(R.id.firstBooksRecyclerHorizontalView, BooksInfo.getRecommendedBooks());
+        createHorizontalRecyclerView(R.id.secondBooksRecyclerHorizontalView, BooksInfo.getBestBooks());
+        createHorizontalRecyclerView(R.id.thirdBooksRecyclerHorizontalView, BooksInfo.getPopularBooks());
+        createHorizontalRecyclerView(R.id.fourthBooksRecyclerHorizontalView, BooksInfo.getNewBooks());
 
         // ---------------------- Menu -----------------------------
         menu = findViewById(R.id.bottomNavigation);
@@ -60,4 +75,27 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
+    private void createHorizontalRecyclerView(int idBooksRecyclerHorizontalView, ArrayList<BookModel> books) {
+        RecyclerView recyclerView = findViewById(idBooksRecyclerHorizontalView);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        RecyclerView.Adapter recyclerViewAdapter = new HomePageRecycleViewAdapter(books, this, HomePage.this);
+        recyclerView.setAdapter(recyclerViewAdapter);
+    }
+
+    @Override
+    public void onBookItemClick(ArrayList<BookModel> books, int position) {
+        Intent intent = new Intent(HomePage.this, Book.class);
+
+        intent.putExtra("AUTHOR", books.get(position).getAuthor());
+        intent.putExtra("BOOK_NAME", books.get(position).getBookName());
+        intent.putExtra("YEAR", books.get(position).getYear());
+        intent.putExtra("GENRE", books.get(position).getGenre());
+        intent.putExtra("ANNOTATION", books.get(position).getAnnotation());
+        intent.putExtra("IMAGE", String.valueOf(books.get(position).getImage()));
+        intent.putExtra("RATING", String.valueOf(books.get(position).getRating()));
+
+        startActivity(intent);
+    }
 }
