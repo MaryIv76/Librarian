@@ -25,4 +25,22 @@
     <string name="best_books">Лучшие книги</string>
     <string name="popular_books">Популярные книги</string>
     <string name="new_books">Новинки</string>
+
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+
+    <string name="register">Зарегистрироваться</string>
+    <string name="enter">Войти</string>
+
+    <string name="enter_login">Введите логин</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="enter_valid_email">Введите верный email</string>
+    <string name="enter_valid_password">Пароль должен содержать минимум 8 знаков</string>
+    <string name="passwords_do_not_match">Пароли не совпадают</string>
+
+    <string name="successful_registration">Регистрация успешно завершена</string>
+    <string name="successful_enter">Вы успешно вошли</string>
+
+    <string name="logout">Выйти</string>
 </resources>

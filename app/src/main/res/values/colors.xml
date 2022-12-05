@@ -13,4 +13,6 @@
     <color name="black_80">#CC000000</color>
     <color name="yellow">#FFC107</color>
     <color name="purple_splash">#86A7EE</color>
+    <color name="light_blue">#80B8FE</color>
+    <color name="blue_btn">#0038FF</color>
 </resources>

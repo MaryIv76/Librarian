@@ -70,6 +70,8 @@ public class Library extends AppCompatActivity implements RecyclerViewInterface 
                         return true;
                     }
                     case R.id.userItem: {
+                        Intent intent = new Intent(Library.this, UserAccount.class);
+                        startActivity(intent);
                         return true;
                     }
                 }

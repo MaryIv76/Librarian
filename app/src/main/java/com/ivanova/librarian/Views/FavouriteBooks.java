@@ -59,6 +59,8 @@ public class FavouriteBooks extends AppCompatActivity implements RecyclerViewInt
                         return true;
                     }
                     case R.id.userItem: {
+                        Intent intent = new Intent(FavouriteBooks.this, UserAccount.class);
+                        startActivity(intent);
                         return true;
                     }
                 }

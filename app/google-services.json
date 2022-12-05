@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "289371614904",
+    "project_id": "librarian-118dd",
+    "storage_bucket": "librarian-118dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289371614904:android:1468eb029e8f4ed7950e4d",
+        "android_client_info": {
+          "package_name": "com.ivanova.librarian"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289371614904-kst8u1g9st8fhpbfuvs9kpvieg502e7n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHoy2SAVKifBQXU6OG2Xe-oefQtD5zqEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "289371614904-kst8u1g9st8fhpbfuvs9kpvieg502e7n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -116,6 +116,8 @@ public class Book extends AppCompatActivity {
                         return true;
                     }
                     case R.id.userItem: {
+                        Intent intent = new Intent(Book.this, UserAccount.class);
+                        startActivity(intent);
                         return true;
                     }
                 }
