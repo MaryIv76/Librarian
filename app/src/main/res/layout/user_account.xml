@@ -5,29 +5,88 @@
     android:background="@drawable/gradient_background">
 
     <TextView
+        android:id="@+id/tv_userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/sans_caption_bold"
         android:text="Имя пользователя"
         android:textColor="@color/black"
-        android:fontFamily="@font/sans_caption_bold"
-        android:textSize="24dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="20dp"/>
+        android:textSize="24dp" />
 
     <RelativeLayout
+        android:id="@+id/buttonsFriends"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_userName"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp">
 
-        <Button
+        <FrameLayout
+            android:id="@+id/btn_friends_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/tv_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button_ripple"
+                android:clickable="true"
+                android:fontFamily="@font/sans_caption_regular"
+                android:paddingHorizontal="40dp"
+                android:paddingVertical="9dp"
+                android:text="@string/friends"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/add_friends_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/btn_friends_layout"
+            android:background="@drawable/rounded_button_ripple"
+            android:clickable="true"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/im_add_friends"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/add_friend" />
+        </FrameLayout>
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_editProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonsFriends"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_button_ripple"
+        android:clickable="true"
+        android:fontFamily="@font/sans_caption_regular"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="9dp"
+        android:text="@string/edit_profile"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/tv_editProfile"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/blue_btn"
         android:text="@string/logout" />
 

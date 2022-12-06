@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/custom_button"
-    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:background="@drawable/custom_button_ripple"
     android:padding="5dp">
 
 

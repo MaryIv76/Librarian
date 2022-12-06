@@ -42,5 +42,8 @@
     <string name="successful_registration">Регистрация успешно завершена</string>
     <string name="successful_enter">Вы успешно вошли</string>
 
+    <string name="friends">Друзья</string>
+    <string name="edit_profile">Редактировать профиль</string>
+
     <string name="logout">Выйти</string>
 </resources>

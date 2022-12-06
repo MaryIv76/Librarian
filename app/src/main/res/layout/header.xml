@@ -23,7 +23,7 @@
                 android:id="@+id/et_search"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:backgroundTint="#9CC6FA"
+                android:backgroundTint="@color/blue_25"
                 android:cursorVisible="true"
                 android:focusableInTouchMode="true"
                 android:imeOptions="actionSearch"

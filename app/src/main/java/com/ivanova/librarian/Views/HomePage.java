@@ -1,10 +1,19 @@
 package com.ivanova.librarian.Views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +34,12 @@ public class HomePage extends AppCompatActivity implements HomePageRecyclerViewI
 
     private BottomNavigationView menu;
     private Spinner spinner;
+
+    private ImageButton searchBtn;
+    private boolean searchIsEnabled;
+    private ImageButton filtersBtn;
+    private RelativeLayout searchEditTextLayout;
+    private EditText searchEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +92,38 @@ public class HomePage extends AppCompatActivity implements HomePageRecyclerViewI
                 return true;
             }
         });
+
+
+        // ---------------------- Search Button -----------------------------
+        searchEditTextLayout = findViewById(R.id.et_layout_search);
+        searchEditTextLayout.setEnabled(false);
+        filtersBtn = findViewById(R.id.settingsButton);
+        searchIsEnabled = false;
+
+        searchBtn = findViewById(R.id.searchButton);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!searchIsEnabled) {
+                    startSearching();
+
+                } else {
+                    endSearching();
+                }
+            }
+        });
+
+        searchEditText = findViewById(R.id.et_search);
+        searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                    endSearching();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void createHorizontalRecyclerView(int idBooksRecyclerHorizontalView, ArrayList<BookModel> books) {
@@ -101,5 +148,30 @@ public class HomePage extends AppCompatActivity implements HomePageRecyclerViewI
         intent.putExtra("RATING", String.valueOf(books.get(position).getRating()));
 
         startActivity(intent);
+    }
+
+    private void startSearching() {
+        searchIsEnabled = true;
+        filtersBtn.setVisibility(View.INVISIBLE);
+        spinner.setVisibility(View.INVISIBLE);
+        filtersBtn.setEnabled(false);
+        spinner.setEnabled(false);
+        searchEditTextLayout.setVisibility(View.VISIBLE);
+        searchEditTextLayout.setEnabled(true);
+
+        searchEditText.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, 0);
+    }
+
+    private void endSearching() {
+        searchIsEnabled = false;
+        filtersBtn.setVisibility(View.VISIBLE);
+        spinner.setVisibility(View.VISIBLE);
+        filtersBtn.setEnabled(true);
+        spinner.setEnabled(true);
+        searchEditTextLayout.setVisibility(View.INVISIBLE);
+        searchEditTextLayout.setEnabled(false);
+        searchEditText.onEditorAction(EditorInfo.IME_ACTION_DONE);
     }
 }
