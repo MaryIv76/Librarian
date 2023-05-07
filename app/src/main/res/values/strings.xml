@@ -46,4 +46,8 @@
     <string name="edit_profile">Редактировать профиль</string>
 
     <string name="logout">Выйти</string>
+    <string name="noFavouriteBooks">Избранные книги не найдены</string>
+    <string name="save">Сохранить рейтинг</string>
+    <string name="rating_bigger_zero">Выставляемый рейтинг должен быть больше нуля</string>
+    <string name="rating_was_saved">Рейтинг был успешно сохранен</string>
 </resources>

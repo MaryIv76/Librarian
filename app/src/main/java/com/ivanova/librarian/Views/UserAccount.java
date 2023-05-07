@@ -24,7 +24,11 @@ public class UserAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_account);
 
-        // ---------------------- Log Out -----------------------------
+        initLogOutBtn();
+        initMenu();
+    }
+
+    private void initLogOutBtn() {
         logoutBtn = findViewById(R.id.btn_logout);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,8 +38,9 @@ public class UserAccount extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
-        // ---------------------- Menu -----------------------------
+    private void initMenu() {
         menu = findViewById(R.id.bottomNavigation);
         menu.getMenu().getItem(4).setChecked(true);
         menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

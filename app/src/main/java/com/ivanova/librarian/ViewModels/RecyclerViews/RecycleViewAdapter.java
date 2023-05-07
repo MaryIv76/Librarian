@@ -1,4 +1,4 @@
-package com.ivanova.librarian.ViewModels;
+package com.ivanova.librarian.ViewModels.RecyclerViews;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -32,7 +32,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.library_book_item, parent, false);
-        MyViewHolder holder = new MyViewHolder(view, recyclerViewInterface);
+        MyViewHolder holder = new MyViewHolder(view, recyclerViewInterface, books);
         return holder;
     }
 
@@ -43,7 +43,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         holder.tv_bookYear.setText(books.get(position).getYear());
         holder.tv_bookGenre.setText(books.get(position).getGenre());
         holder.tv_bookAnnotation.setText(books.get(position).getAnnotation());
-        holder.iv_bookImg.setImageDrawable(holder.itemView.getContext().getDrawable(books.get(position).getImage()));
+        holder.iv_bookImg.setImageBitmap(books.get(position).getImage());
     }
 
     @Override
@@ -59,7 +59,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         TextView tv_bookGenre;
         TextView tv_bookAnnotation;
 
-        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
+        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface, ArrayList<BookModel> books) {
             super(itemView);
             iv_bookImg = itemView.findViewById(R.id.bookImage);
             tv_bookAuthor = itemView.findViewById(R.id.authorInfo);
@@ -75,7 +75,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                         int pos = getAbsoluteAdapterPosition();
 
                         if (pos != RecyclerView.NO_POSITION) {
-                            recyclerViewInterface.onBookItemClick(pos);
+                            recyclerViewInterface.onBookItemClick(books, pos);
                         }
                     }
                 }

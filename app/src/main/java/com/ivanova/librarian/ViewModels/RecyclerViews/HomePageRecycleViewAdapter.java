@@ -1,4 +1,4 @@
-package com.ivanova.librarian.ViewModels;
+package com.ivanova.librarian.ViewModels.RecyclerViews;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,37 +12,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ivanova.librarian.Models.BookModel;
 import com.ivanova.librarian.R;
-import com.ivanova.librarian.Views.HomePage;
 
 import java.util.ArrayList;
 
 public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRecycleViewAdapter.MyViewHolder> {
 
-    private final HomePageRecyclerViewInterface homePageRecyclerViewInterface;
+    private final RecyclerViewInterface recyclerViewInterface;
 
     ArrayList<BookModel> books;
     Context context;
 
-    public HomePageRecycleViewAdapter(ArrayList<BookModel> books, Context context, HomePageRecyclerViewInterface homePageRecyclerViewInterface) {
+    public HomePageRecycleViewAdapter(ArrayList<BookModel> books, Context context, RecyclerViewInterface recyclerViewInterface) {
         this.books = books;
         this.context = context;
-        this.homePageRecyclerViewInterface = homePageRecyclerViewInterface;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_page_book_item, parent, false);
-        MyViewHolder holder = new MyViewHolder(view, homePageRecyclerViewInterface, books);
+        MyViewHolder holder = new MyViewHolder(view, recyclerViewInterface, books);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.iv_bookImage.setImageResource(books.get(position).getImage());
+        holder.iv_bookImage.setImageBitmap(books.get(position).getImage());
         holder.tv_author.setText(books.get(position).getAuthor());
         holder.tv_bookName.setText(books.get(position).getBookName());
-        holder.tv_rating.setText(String.valueOf(books.get(position).getRating()));
+        holder.tv_rating.setText(String.format("%.1f", books.get(position).getRating()));
     }
 
     @Override
@@ -56,7 +55,7 @@ public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRec
         TextView tv_bookName;
         TextView tv_rating;
 
-        public MyViewHolder(@NonNull View itemView, HomePageRecyclerViewInterface homePageRecyclerViewInterface, ArrayList<BookModel> books) {
+        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface, ArrayList<BookModel> books) {
             super(itemView);
             iv_bookImage = itemView.findViewById(R.id.bookImage);
             tv_author = itemView.findViewById(R.id.tv_author);
@@ -66,10 +65,10 @@ public class HomePageRecycleViewAdapter extends RecyclerView.Adapter<HomePageRec
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (homePageRecyclerViewInterface != null) {
+                    if (recyclerViewInterface != null) {
                         int pos = getAbsoluteAdapterPosition();
                         if (pos != RecyclerView.NO_POSITION) {
-                            homePageRecyclerViewInterface.onBookItemClick(books, pos);
+                            recyclerViewInterface.onBookItemClick(books, pos);
                         }
                     }
                 }

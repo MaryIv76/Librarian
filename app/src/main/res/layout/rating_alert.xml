@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gradient_background">
+
+    <TextView
+        android:id="@+id/tv_bigRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/sans_narrow_bold"
+        android:text="4,4"
+        android:textColor="@color/black"
+        android:textSize="72dp" />
+
+    <RatingBar
+        android:id="@+id/smallRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_bigRating"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:progressBackgroundTint="@color/blue"
+        android:progressTint="@color/yellow"
+        android:scaleX="0.35"
+        android:scaleY="0.35"
+        android:secondaryProgressTint="@color/yellow"
+        android:transformPivotX="0dp" />
+
+    <TextView
+        android:id="@+id/tv_numRatings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_bigRating"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/sans_narrow_regular"
+        android:text="120"
+        android:textColor="@color/black_40"
+        android:textSize="16dp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_progressBars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_progressBar5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/sans_caption_regular"
+                android:text="5"
+                android:textColor="@color/black_80"
+                android:textSize="14dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar5"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:max="120"
+                android:progress="110"
+                android:progressBackgroundTint="@color/blue"
+                android:progressTint="@color/yellow"
+                android:scaleY="1.8"
+                android:secondaryProgressTint="@color/yellow" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_progressBar4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_progressBar5"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/sans_caption_regular"
+                android:text="4"
+                android:textColor="@color/black_80"
+                android:textSize="14dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar4"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:progressBackgroundTint="@color/blue"
+                android:progressTint="@color/yellow"
+                android:scaleY="1.8"
+                android:secondaryProgressTint="@color/yellow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_progressBar3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_progressBar4"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/sans_caption_regular"
+                android:text="3"
+                android:textColor="@color/black_80"
+                android:textSize="14dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:progressBackgroundTint="@color/blue"
+                android:progressTint="@color/yellow"
+                android:scaleY="1.8"
+                android:secondaryProgressTint="@color/yellow" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_progressBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_progressBar3"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/sans_caption_regular"
+                android:text="2"
+                android:textColor="@color/black_80"
+                android:textSize="14dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:progressBackgroundTint="@color/blue"
+                android:progressTint="@color/yellow"
+                android:scaleY="1.8"
+                android:secondaryProgressTint="@color/yellow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_progressBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_progressBar2"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/sans_caption_regular"
+                android:text="1"
+                android:textColor="@color/black_80"
+                android:textSize="14dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:progressBackgroundTint="@color/blue"
+                android:progressTint="@color/yellow"
+                android:scaleY="1.8"
+                android:secondaryProgressTint="@color/yellow" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RatingBar
+        android:id="@+id/userRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_progressBars"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:numStars="5"
+        android:progressBackgroundTint="@color/blue"
+        android:progressTint="@color/yellow"
+        android:secondaryProgressTint="@color/yellow"
+        android:stepSize="1" />
+
+    <Button
+        android:id="@+id/btn_saveRating"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userRatingBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/blue_btn"
+        android:text="@string/save" />
+
+</RelativeLayout>

@@ -74,6 +74,7 @@
                     android:layout_below="@id/nameAuthor"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
+                    android:isIndicator="true"
                     android:numStars="5"
                     android:progressBackgroundTint="@color/blue"
                     android:progressTint="@color/yellow"

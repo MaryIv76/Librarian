@@ -1,6 +1,7 @@
 package com.ivanova.librarian.Views;
 
-import android.content.Intent;
+import static android.content.ContentValues.TAG;
+
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +19,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.ivanova.librarian.R;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterFragment extends Fragment {
 
@@ -31,6 +39,7 @@ public class RegisterFragment extends Fragment {
     private Button registerBtn;
 
     private FirebaseAuth fAuth;
+    private FirebaseFirestore db;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +51,7 @@ public class RegisterFragment extends Fragment {
         registerBtn = view.findViewById(R.id.btn_register_reg);
 
         fAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         view.findViewById(R.id.btn_enter_reg).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +111,24 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    Map<String, Object> newUser = new HashMap<>();
+                    newUser.put("id", -1);
+
+                    db.collection("users").document(fAuth.getCurrentUser().getUid())
+                            .set(newUser)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error writing document", e);
+                                }
+                            });
+
                     FragmentNavigation navRegister = (FragmentNavigation) getActivity();
                     navRegister.navigateFragments(null, true);
                 } else {

@@ -3,6 +3,7 @@ package com.ivanova.librarian.Views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.SurfaceControl;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,7 @@ public class Login extends AppCompatActivity implements FragmentNavigation {
         setContentView(R.layout.login);
 
         fAuth = FirebaseAuth.getInstance();
+        //currentUser.getUid()
 
         FirebaseUser currentUser = fAuth.getCurrentUser();
         if (currentUser != null) {

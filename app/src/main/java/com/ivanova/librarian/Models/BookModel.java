@@ -1,16 +1,25 @@
 package com.ivanova.librarian.Models;
 
+import android.graphics.Bitmap;
+
 public class BookModel {
 
+    private int id;
+    private String ISBN;
     private String author;
     private String bookName;
     private String year;
     private String genre;
     private String annotation;
-    private int image;
+    private Bitmap image;
     private double rating;
 
-    public BookModel(String author, String bookName, String year, String genre, String annotation, int image, double rating) {
+    public BookModel() {
+    }
+
+    public BookModel(int id, String ISBN, String author, String bookName, String year, String genre, String annotation, Bitmap image, double rating) {
+        this.id = id;
+        this.ISBN = ISBN;
         this.author = author;
         this.bookName = bookName;
         this.year = year;
@@ -18,6 +27,22 @@ public class BookModel {
         this.annotation = annotation;
         this.image = image;
         this.rating = rating;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
     }
 
     public String getAuthor() {
@@ -60,11 +85,11 @@ public class BookModel {
         this.annotation = annotation;
     }
 
-    public int getImage() {
+    public Bitmap getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(Bitmap image) {
         this.image = image;
     }
 
