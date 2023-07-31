@@ -288,8 +288,8 @@ public class HomePage extends AppCompatActivity implements RecyclerViewInterface
                 .addOnSuccessListener(new OnSuccessListener<CustomModel>() {
                     @Override
                     public void onSuccess(CustomModel model) {
-                        Toast toast = Toast.makeText(getApplicationContext(), "Model was loaded", Toast.LENGTH_SHORT);
-                        toast.show();
+//                        Toast toast = Toast.makeText(getApplicationContext(), "Model was loaded", Toast.LENGTH_SHORT);
+//                        toast.show();
 
                         File modelFile = model.getFile();
                         if (modelFile != null) {
@@ -300,8 +300,8 @@ public class HomePage extends AppCompatActivity implements RecyclerViewInterface
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast toast = Toast.makeText(getApplicationContext(), "Failed to download model", Toast.LENGTH_SHORT);
-                        toast.show();
+//                        Toast toast = Toast.makeText(getApplicationContext(), "Failed to download model", Toast.LENGTH_SHORT);
+//                        toast.show();
                     }
                 });
     }
