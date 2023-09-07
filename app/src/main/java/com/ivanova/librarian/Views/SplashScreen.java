@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ivanova.librarian.R;
+import com.ivanova.librarian.Views.LoginFolder.Login;
 
 public class SplashScreen extends AppCompatActivity {
 

@@ -2,13 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bookPageLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@id/menuLayout"
         android:layout_alignParentTop="true">
 
@@ -189,8 +190,121 @@
                 </RelativeLayout>
 
             </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/commentsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bookInfoLayout"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="30dp">
+
+                <RelativeLayout
+                    android:id="@+id/commentsNumberLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_commentsNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/sans_caption_bold"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_commentsLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/tv_commentsNumber"
+                        android:fontFamily="@font/sans_caption_bold"
+                        android:text="@string/comments_0"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/commentsNumberLayout"
+                    android:layout_marginTop="5dp"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:overScrollMode="never" />
+
+                <RelativeLayout
+                    android:id="@+id/leaveCommentLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/commentsRecyclerView"
+                    android:layout_marginTop="5dp">
+
+                    <View
+                        android:id="@+id/delimiter"
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:background="@color/black_40" />
+
+                    <TextView
+                        android:id="@+id/tv_leaveComment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/delimiter"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/sans_caption_bold"
+                        android:text="@string/leaveComment"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/leaveCommentInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_leaveComment"
+                        android:layout_marginTop="10dp"
+                        android:hint="@string/commentHint"
+                        app:boxBackgroundColor="@color/blue_comment">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_leaveComment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <FrameLayout
+                        android:id="@+id/btn_sendCommentLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/leaveCommentInputLayout"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:clickable="true">
+
+                        <TextView
+                            android:id="@+id/tv_sendComment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/comment_rounded_button_ripple"
+
+                            android:fontFamily="@font/sans_caption_regular"
+                            android:paddingHorizontal="40dp"
+                            android:paddingVertical="9dp"
+                            android:text="@string/sendComment"
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
+
+                    </FrameLayout>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
         </RelativeLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <FrameLayout
         android:id="@+id/menuLayout"

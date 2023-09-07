@@ -38,6 +38,7 @@
     <string name="enter_valid_email">Введите верный email</string>
     <string name="enter_valid_password">Пароль должен содержать минимум 8 знаков</string>
     <string name="passwords_do_not_match">Пароли не совпадают</string>
+    <string name="not_valid_login_or_password">Неверный логин или пароль</string>
 
     <string name="successful_registration">Регистрация успешно завершена</string>
     <string name="successful_enter">Вы успешно вошли</string>
@@ -50,4 +51,11 @@
     <string name="save">Сохранить рейтинг</string>
     <string name="rating_bigger_zero">Выставляемый рейтинг должен быть больше нуля</string>
     <string name="rating_was_saved">Рейтинг был успешно сохранен</string>
+
+    <string name="comments_0">комментариев</string>
+    <string name="comments_1">комментарий</string>
+    <string name="comments_2">комментария</string>
+    <string name="leaveComment">Оставить комментарий</string>
+    <string name="commentHint">Комментарий...</string>
+    <string name="sendComment">Отправить</string>
 </resources>

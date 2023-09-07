@@ -1,4 +1,4 @@
-package com.ivanova.librarian.Views;
+package com.ivanova.librarian.Views.LoginFolder;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -69,17 +69,7 @@ public class LoginFragment extends Fragment {
         }
 
         if (!login.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
-            if (login.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
-                if (password.getText().toString().length() >= 8) {
-                    firebaseSignIn();
-
-                } else {
-                    password.setError(getString(R.string.enter_valid_password), icon);
-                }
-
-            } else {
-                login.setError(getString(R.string.enter_valid_email), icon);
-            }
+            firebaseSignIn();
         }
     }
 
@@ -96,7 +86,7 @@ public class LoginFragment extends Fragment {
                 } else {
                     loginBtn.setEnabled(true);
                     loginBtn.setAlpha(1.0f);
-                    Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.not_valid_login_or_password), Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -1,4 +1,4 @@
-package com.ivanova.librarian.ViewModels.RecyclerViews;
+package com.ivanova.librarian.ViewModels.RecyclerViewsFolder;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,20 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ivanova.librarian.Models.BookModel;
 import com.ivanova.librarian.R;
+import com.ivanova.librarian.ViewModels.BookViewModelFolder.BookViewModel;
 
 import java.util.ArrayList;
 
-public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private final RecyclerViewInterface recyclerViewInterface;
 
-    ArrayList<BookModel> books;
+    ArrayList<BookViewModel> bookVMs;
     Context context;
 
-    public RecycleViewAdapter(ArrayList<BookModel> books, Context context, RecyclerViewInterface recyclerViewInterface) {
-        this.books = books;
+    public RecyclerViewAdapter(ArrayList<BookViewModel> bookVMs, Context context, RecyclerViewInterface recyclerViewInterface) {
+        this.bookVMs = bookVMs;
         this.context = context;
         this.recyclerViewInterface = recyclerViewInterface;
     }
@@ -32,23 +32,23 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.library_book_item, parent, false);
-        MyViewHolder holder = new MyViewHolder(view, recyclerViewInterface, books);
+        MyViewHolder holder = new MyViewHolder(view, recyclerViewInterface, bookVMs);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv_bookAuthor.setText(books.get(position).getAuthor());
-        holder.tv_bookName.setText(books.get(position).getBookName());
-        holder.tv_bookYear.setText(books.get(position).getYear());
-        holder.tv_bookGenre.setText(books.get(position).getGenre());
-        holder.tv_bookAnnotation.setText(books.get(position).getAnnotation());
-        holder.iv_bookImg.setImageBitmap(books.get(position).getImage());
+        holder.tv_bookAuthor.setText(bookVMs.get(position).getBook().getAuthor());
+        holder.tv_bookName.setText(bookVMs.get(position).getBook().getBookName());
+        holder.tv_bookYear.setText(bookVMs.get(position).getBook().getYear());
+        holder.tv_bookGenre.setText(bookVMs.get(position).getBook().getGenre());
+        holder.tv_bookAnnotation.setText(bookVMs.get(position).getBook().getAnnotation());
+        holder.iv_bookImg.setImageBitmap(bookVMs.get(position).getBook().getImage());
     }
 
     @Override
     public int getItemCount() {
-        return books.size();
+        return bookVMs.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -59,7 +59,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         TextView tv_bookGenre;
         TextView tv_bookAnnotation;
 
-        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface, ArrayList<BookModel> books) {
+        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface, ArrayList<BookViewModel> bookVMs) {
             super(itemView);
             iv_bookImg = itemView.findViewById(R.id.bookImage);
             tv_bookAuthor = itemView.findViewById(R.id.authorInfo);
@@ -75,7 +75,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                         int pos = getAbsoluteAdapterPosition();
 
                         if (pos != RecyclerView.NO_POSITION) {
-                            recyclerViewInterface.onBookItemClick(books, pos);
+                            recyclerViewInterface.onBookItemClick(bookVMs, pos);
                         }
                     }
                 }

@@ -1,14 +1,18 @@
 package com.ivanova.librarian.Views;
 
 import android.app.AlertDialog;
-import android.content.Intent;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -18,11 +22,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -30,10 +35,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import com.ivanova.librarian.Models.BookModel;
 import com.ivanova.librarian.R;
+import com.ivanova.librarian.ViewModels.CommentViewModelFolder.CommentViewModel;
+import com.ivanova.librarian.ViewModels.CommentViewModelFolder.CommentsList;
+import com.ivanova.librarian.ViewModels.CommonFeaturesFolder.CommonFeatures;
+import com.ivanova.librarian.ViewModels.RecyclerViewsFolder.CommentsRecyclerViewAdapter;
+import com.ivanova.librarian.ViewModels.RecyclerViewsFolder.RecyclerViewAdapter;
+import com.ivanova.librarian.ViewModels.SendCommentFolder.SendComment;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class Book extends AppCompatActivity {
@@ -54,6 +67,14 @@ public class Book extends AppCompatActivity {
     private RelativeLayout favouriteButton;
     private boolean isRead;
     private RelativeLayout readButton;
+
+    private ArrayList<CommentViewModel> comments;
+    private HashSet<String> commentsIDs;
+
+    private TextView tv_commentsNumber;
+    private TextView tv_commentsLabel;
+    private EditText et_comment;
+    private FrameLayout sendCommentBtn;
 
     private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseAuth fAuth;
@@ -84,6 +105,69 @@ public class Book extends AppCompatActivity {
         initRatingBar();
 
         initMenu();
+
+        initCommentsSection();
+    }
+
+    private void initCommentsSection() {
+        tv_commentsNumber = findViewById(R.id.tv_commentsNumber);
+        tv_commentsLabel = findViewById(R.id.tv_commentsLabel);
+
+        et_comment = findViewById(R.id.et_leaveComment);
+        initCommentsList();
+    }
+
+    private void initCommentsList() {
+        comments = new ArrayList<>();
+        commentsIDs = new HashSet<>();
+
+        RecyclerView recyclerView = findViewById(R.id.commentsRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true);
+        recyclerView.setLayoutManager(layoutManager);
+        RecyclerView.Adapter recyclerViewAdapter = new CommentsRecyclerViewAdapter(comments, this);
+        recyclerView.setAdapter(recyclerViewAdapter);
+
+        CommentsList.listenToCommentsUpdates(book.getId(), comments, commentsIDs, recyclerView, recyclerViewAdapter, tv_commentsNumber, tv_commentsLabel);
+
+        initSendCommentBtn(recyclerViewAdapter);
+    }
+
+    private void initSendCommentBtn(RecyclerView.Adapter recyclerViewAdapter) {
+        sendCommentBtn = findViewById(R.id.btn_sendCommentLayout);
+        sendCommentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!et_comment.getText().toString().trim().equals("")) {
+                    SendComment.sendComment(book.getId(), et_comment, comments, recyclerViewAdapter);
+                    refreshCommentEditText();
+                }
+            }
+        });
+    }
+
+    private void refreshCommentEditText() {
+        et_comment.setText("");
+        et_comment.clearFocus();
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(et_comment.getWindowToken(), 0);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (et_comment.isFocused()) {
+                Rect outRect = new Rect();
+                et_comment.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    et_comment.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(et_comment.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
     }
 
     private BookModel getBookFromPrevActivity() {
@@ -282,38 +366,7 @@ public class Book extends AppCompatActivity {
 
     private void initMenu() {
         menu = findViewById(R.id.bottomNavigation);
-        menu.getMenu().getItem(2).setChecked(true);
-        menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.homeItem: {
-                        Intent intent = new Intent(Book.this, HomePage.class);
-                        startActivity(intent);
-                        return true;
-                    }
-                    case R.id.searchItem: {
-                        return true;
-                    }
-                    case R.id.bookItem: {
-                        Intent intent = new Intent(Book.this, Library.class);
-                        startActivity(intent);
-                        return true;
-                    }
-                    case R.id.heartItem: {
-                        Intent intent = new Intent(Book.this, FavouriteBooks.class);
-                        startActivity(intent);
-                        return true;
-                    }
-                    case R.id.userItem: {
-                        Intent intent = new Intent(Book.this, UserAccount.class);
-                        startActivity(intent);
-                        return true;
-                    }
-                }
-                return true;
-            }
-        });
+        CommonFeatures.initMenu(this, menu, new boolean[]{false, false, true, false, false}, true);
     }
 
     private void initRatingBar() {

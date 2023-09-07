@@ -1,9 +1,7 @@
-package com.ivanova.librarian.Views;
+package com.ivanova.librarian.Views.LoginFolder;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.SurfaceControl;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -12,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ivanova.librarian.R;
+import com.ivanova.librarian.Views.HomePage;
 
 public class Login extends AppCompatActivity implements FragmentNavigation {
 
@@ -23,7 +22,6 @@ public class Login extends AppCompatActivity implements FragmentNavigation {
         setContentView(R.layout.login);
 
         fAuth = FirebaseAuth.getInstance();
-        //currentUser.getUid()
 
         FirebaseUser currentUser = fAuth.getCurrentUser();
         if (currentUser != null) {
@@ -43,5 +41,10 @@ public class Login extends AppCompatActivity implements FragmentNavigation {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.login_container, fragment);
             transaction.commit();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
     }
 }

@@ -13,6 +13,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.ivanova.librarian.R;
+import com.ivanova.librarian.ViewModels.CommonFeaturesFolder.CommonFeatures;
+import com.ivanova.librarian.Views.LoginFolder.Login;
 
 public class UserAccount extends AppCompatActivity {
 
@@ -42,35 +44,17 @@ public class UserAccount extends AppCompatActivity {
 
     private void initMenu() {
         menu = findViewById(R.id.bottomNavigation);
+        CommonFeatures.initMenu(this, menu, new boolean[]{false, false, false, false, true}, false);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
         menu.getMenu().getItem(4).setChecked(true);
-        menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.homeItem: {
-                        Intent intent = new Intent(UserAccount.this, HomePage.class);
-                        startActivity(intent);
-                        return true;
-                    }
-                    case R.id.searchItem: {
-                        return true;
-                    }
-                    case R.id.bookItem: {
-                        Intent intent = new Intent(UserAccount.this, Library.class);
-                        startActivity(intent);
-                        return true;
-                    }
-                    case R.id.heartItem: {
-                        Intent intent = new Intent(UserAccount.this, FavouriteBooks.class);
-                        startActivity(intent);
-                        return true;
-                    }
-                    case R.id.userItem: {
-                        return true;
-                    }
-                }
-                return true;
-            }
-        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
     }
 }

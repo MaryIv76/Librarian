@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#80A8F5</color>
+    <color name="blue_80">#CC80A8F5</color>
+    <color name="blue_60">#9980A8F5</color>
     <color name="blue_25">#4080A8F5</color>
     <color name="black_20">#33000000</color>
     <color name="black_40">#66000000</color>
@@ -17,4 +19,5 @@
     <color name="purple_splash">#86A7EE</color>
     <color name="light_blue">#80B8FE</color>
     <color name="blue_btn">#0038FF</color>
+    <color name="blue_comment">#79AEFA</color>
 </resources>

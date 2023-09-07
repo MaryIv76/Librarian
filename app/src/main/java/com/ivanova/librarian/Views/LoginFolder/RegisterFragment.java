@@ -1,4 +1,4 @@
-package com.ivanova.librarian.Views;
+package com.ivanova.librarian.Views.LoginFolder;
 
 import static android.content.ContentValues.TAG;
 

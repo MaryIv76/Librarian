@@ -1,6 +1,10 @@
 package com.ivanova.librarian.Models;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import com.ivanova.librarian.R;
 
 public class BookModel {
 
@@ -14,7 +18,16 @@ public class BookModel {
     private Bitmap image;
     private double rating;
 
-    public BookModel() {
+    public BookModel(Context context) {
+        this.id = -1;
+        this.ISBN = "";
+        this.author = "";
+        this.bookName = "";
+        this.year = "";
+        this.genre = "";
+        this.annotation = "";
+        this.rating = 0.0;
+        this.image = BitmapFactory.decodeResource(context.getResources(), R.drawable.book_cover);
     }
 
     public BookModel(int id, String ISBN, String author, String bookName, String year, String genre, String annotation, Bitmap image, double rating) {
