@@ -7,6 +7,7 @@
     <string name="user">Мой аккаунт</string>
 
     <string-array name="spinner_array">
+        <item>Фильтровать</item>
         <item>По популярности</item>
         <item>По рейтингу</item>
         <item>Новинки</item>
@@ -58,4 +59,13 @@
     <string name="leaveComment">Оставить комментарий</string>
     <string name="commentHint">Комментарий...</string>
     <string name="sendComment">Отправить</string>
+
+    <string name="genres">Жанры</string>
+    <string name="apply">Применить</string>
+    <string name="fantasy">фэнтези</string>
+    <string name="detectives">детективы</string>
+    <string name="scienceFiction">научная\nфантастика</string>
+    <string name="loveRomances">любовные\nроманы</string>
+    <string name="fairyTales">сказки</string>
+    <string name="horrors">ужасы</string>
 </resources>

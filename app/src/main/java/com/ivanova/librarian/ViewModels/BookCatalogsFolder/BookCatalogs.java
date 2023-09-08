@@ -20,16 +20,19 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ivanova.librarian.ViewModels.BookViewModelFolder.BookViewModel;
+import com.ivanova.librarian.ViewModels.FilterBooksFolder.FilterBooksCallback;
 import com.ivanova.librarian.ViewModels.RecommendFolder.Recommendations;
 import com.ivanova.librarian.ViewModels.RecommendFolder.RecommendationsCallback;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Locale;
 
 public class BookCatalogs {
 
     private static FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private static void getBooks(ArrayList<Integer> bookIDs, ArrayList<BookViewModel> books, Context context, RecyclerView recyclerView, RecyclerView.Adapter recyclerViewAdapter) {
+    public static void getBooks(ArrayList<Integer> bookIDs, ArrayList<BookViewModel> books, Context context, RecyclerView recyclerView, RecyclerView.Adapter recyclerViewAdapter) {
         recyclerView.setAdapter(recyclerViewAdapter);
 
         for (int id : bookIDs) {
@@ -54,7 +57,7 @@ public class BookCatalogs {
                             if (document.exists()) {
                                 float userID = Float.parseFloat(document.get("id").toString());
                                 if (userID == -1.0f) {
-                                    getBestBooks(books, context, recyclerView, recyclerViewAdapter);  //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                    getFiveBestBooks(books, context, recyclerView, recyclerViewAdapter);  //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                                 } else {
                                     db.collection("books").get()
                                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -88,7 +91,7 @@ public class BookCatalogs {
                 });
     }
 
-    public static void getBestBooks(ArrayList<BookViewModel> books, Context context, RecyclerView recyclerView, RecyclerView.Adapter recyclerViewAdapter) {
+    public static void getFiveBestBooks(ArrayList<BookViewModel> books, Context context, RecyclerView recyclerView, RecyclerView.Adapter recyclerViewAdapter) {
         db.collection("books").orderBy("rating", Query.Direction.DESCENDING).limit(5).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -106,7 +109,21 @@ public class BookCatalogs {
                 });
     }
 
-    public static void getPopularBooks(ArrayList<BookViewModel> books, Context context, RecyclerView recyclerView, RecyclerView.Adapter recyclerViewAdapter) {
+    public static void getBestBooks(FilterBooksCallback filterCallback) {
+        db.collection("books").orderBy("rating", Query.Direction.DESCENDING).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            filterCallback.onCallback(task);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    public static void getFivePopularBooks(ArrayList<BookViewModel> books, Context context, RecyclerView recyclerView, RecyclerView.Adapter recyclerViewAdapter) {
         db.collection("books").orderBy("readersCount", Query.Direction.DESCENDING).limit(5).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -124,7 +141,21 @@ public class BookCatalogs {
                 });
     }
 
-    public static void getNewBooks(ArrayList<BookViewModel> books, Context context, RecyclerView recyclerView, RecyclerView.Adapter recyclerViewAdapter) {
+    public static void getPopularBooks(FilterBooksCallback filterCallback) {
+        db.collection("books").orderBy("readersCount", Query.Direction.DESCENDING).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            filterCallback.onCallback(task);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    public static void getFiveNewBooks(ArrayList<BookViewModel> books, Context context, RecyclerView recyclerView, RecyclerView.Adapter recyclerViewAdapter) {
         db.collection("books").orderBy("year", Query.Direction.DESCENDING).limit(5).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -135,6 +166,20 @@ public class BookCatalogs {
                                 ids.add(Integer.parseInt(document.getId()));
                             }
                             getBooks(ids, books, context, recyclerView, recyclerViewAdapter);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    public static void getNewBooks(FilterBooksCallback filterCallback) {
+        db.collection("books").orderBy("year", Query.Direction.DESCENDING).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            filterCallback.onCallback(task);
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -153,6 +198,20 @@ public class BookCatalogs {
                                 ids.add(Integer.parseInt(document.getId()));
                             }
                             getBooks(ids, books, context, recyclerView, recyclerViewAdapter);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    public static void getAllBooksForFilter(FilterBooksCallback filterCallback) {
+        db.collection("books").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            filterCallback.onCallback(task);
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }

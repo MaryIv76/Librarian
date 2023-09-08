@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -148,6 +149,7 @@ public class CommonFeatures {
 
                 } else {
                     searchIsEnabled[0] = CommonFeatures.endSearching(spinner, filtersBtn, searchEditTextLayout, searchEditText);
+
                 }
             }
         });

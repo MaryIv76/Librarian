@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gradient_background">
+
+    <TextView
+        android:id="@+id/tv_genres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/sans_caption_bold"
+        android:text="@string/genres"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <GridLayout
+        android:id="@+id/genresChBoxesLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_genres"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:columnCount="2"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/chBox_fairyTales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sans_caption_regular"
+            android:text="@string/fairyTales"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <CheckBox
+            android:id="@+id/chBox_horrors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/chBox_scienceFiction"
+            android:fontFamily="@font/sans_caption_regular"
+            android:text="@string/horrors"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <CheckBox
+            android:id="@+id/chBox_fantasy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sans_caption_regular"
+            android:text="@string/fantasy"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <CheckBox
+            android:id="@+id/chBox_detectives"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/chBox_fantasy"
+            android:fontFamily="@font/sans_caption_regular"
+            android:text="@string/detectives"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <CheckBox
+            android:id="@+id/chBox_scienceFiction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sans_caption_regular"
+            android:text="@string/scienceFiction"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <CheckBox
+            android:id="@+id/chBox_loveRomances"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/chBox_scienceFiction"
+            android:fontFamily="@font/sans_caption_regular"
+            android:text="@string/loveRomances"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/btn_applyGenresFilter"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/genresChBoxesLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/blue_btn"
+        android:text="@string/apply" />
+
+</RelativeLayout>

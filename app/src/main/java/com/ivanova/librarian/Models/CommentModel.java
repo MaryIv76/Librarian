@@ -2,10 +2,8 @@ package com.ivanova.librarian.Models;
 
 import com.google.firebase.Timestamp;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class CommentModel {
 

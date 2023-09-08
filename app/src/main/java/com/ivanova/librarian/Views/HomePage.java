@@ -65,19 +65,19 @@ public class HomePage extends AppCompatActivity implements RecyclerViewInterface
         initBookList(R.id.secondBooksRecyclerHorizontalView, new BookCatalogsInterface() {
             @Override
             public void getCatalog(ArrayList<BookViewModel> books, Context context, RecyclerView recyclerView, RecyclerView.Adapter recyclerViewAdapter) {
-                BookCatalogs.getBestBooks(books, context, recyclerView, recyclerViewAdapter);
+                BookCatalogs.getFiveBestBooks(books, context, recyclerView, recyclerViewAdapter);
             }
         });
         initBookList(R.id.thirdBooksRecyclerHorizontalView, new BookCatalogsInterface() {
             @Override
             public void getCatalog(ArrayList<BookViewModel> books, Context context, RecyclerView recyclerView, RecyclerView.Adapter recyclerViewAdapter) {
-                BookCatalogs.getPopularBooks(books, context, recyclerView, recyclerViewAdapter);
+                BookCatalogs.getFivePopularBooks(books, context, recyclerView, recyclerViewAdapter);
             }
         });
         initBookList(R.id.fourthBooksRecyclerHorizontalView, new BookCatalogsInterface() {
             @Override
             public void getCatalog(ArrayList<BookViewModel> books, Context context, RecyclerView recyclerView, RecyclerView.Adapter recyclerViewAdapter) {
-                BookCatalogs.getNewBooks(books, context, recyclerView, recyclerViewAdapter);
+                BookCatalogs.getFiveNewBooks(books, context, recyclerView, recyclerViewAdapter);
             }
         });
     }
